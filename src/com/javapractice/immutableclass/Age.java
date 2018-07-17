@@ -5,7 +5,7 @@ package com.javapractice.immutableclass;
  * @Auther : Chetan Surale
  * 
  * */
-public class Age {
+public class Age implements Cloneable {
 
 	private int day;
 	private int month;
@@ -13,6 +13,11 @@ public class Age {
 
 	public int getDay() {
 		return day;
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 
 	public void setDay(int day) {

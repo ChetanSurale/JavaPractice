@@ -49,10 +49,12 @@ public final class ImmutableStudent {
 	}
 
 	public Age getAge() {
-		Age cloneAge = new Age();
-		cloneAge.setDay(this.age.getDay());
-		cloneAge.setMonth(this.age.getMonth());
-		cloneAge.setYear(this.age.getYear());
+		Age cloneAge = null;
+		try {
+			cloneAge = (Age) this.age.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
 		return cloneAge;
 	}
 
@@ -61,11 +63,17 @@ public final class ImmutableStudent {
 		age.setDay(4);
 		age.setMonth(7);
 		age.setYear(1993);
-		
+
 		ImmutableStudent student = new ImmutableStudent(1, "Chetan", age);
+		System.out.println("Chetan age day before modification = " + student.getAge().getDay());
+		System.out.println("Chetan age month before modification = " + student.getAge().getMonth());
 		System.out.println("Chetan age year before modification = " + student.getAge().getYear());
-		
-		student.getAge().setYear(1995);
+
+		student.getAge().setDay(2);
+		student.getAge().setMonth(7);
+		student.getAge().setYear(1998);
+		System.out.println("Chetan age day after modification = " + student.getAge().getDay());
+		System.out.println("Chetan age month after modification = " + student.getAge().getMonth());
 		System.out.println("Chetan age year after modification = " + student.getAge().getYear());
 	}
 
